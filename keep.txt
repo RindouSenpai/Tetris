@@ -1,0 +1,128 @@
+/*//////////////////////////////////////////
+	BLOCK TYPE J
+*////////////////////////////////////////////
+    points[0] = vec2(-EDGE,-EDGE);
+    points[1] = vec2(-EDGE,-EDGE + 2*EDGE/21);
+    points[2] = vec2(-EDGE + 2*EDGE/10,-EDGE);
+
+    points[3] = vec2(-EDGE + 2*EDGE/10,-EDGE);
+    points[4] = vec2(-EDGE + 2*EDGE/10,-EDGE + 2*EDGE/21);
+    points[5] = vec2(-EDGE,-EDGE + 2*EDGE/21);
+    
+    for ( int i = 6; i < 18; i++ ) {
+        static vec2 step = vec2(horStep,0.0);
+        points[i] = points[i-6] + step;
+    }
+
+    for ( int i = 18; i < 24; i++ ) {
+        static vec2 step = vec2(0.0,vertStep);
+        points[i] = points[i-18] + step;
+    }
+
+/*//////////////////////////////////////////
+	BLOCK TYPE O
+*////////////////////////////////////////////
+	points3[0] = vec2(-EDGE,-EDGE);
+    points3[1] = vec2(-EDGE,-EDGE + 2*EDGE/21);
+    points3[2] = vec2(-EDGE + 2*EDGE/10,-EDGE);
+
+    points3[3] = vec2(-EDGE + 2*EDGE/10,-EDGE);
+    points3[4] = vec2(-EDGE + 2*EDGE/10,-EDGE + 2*EDGE/21);
+    points3[5] = vec2(-EDGE,-EDGE + 2*EDGE/21);
+    
+    for ( int i = 6; i < 12; i++ ) {
+        static vec2 step = vec2(horStep,0.0);
+        points3[i] = points3[i-6] + step;
+    }
+
+    for ( int i = 12; i < 18; i++ ) {
+        static vec2 step = vec2(0.0,vertStep);
+        points3[i] = points3[i-6] + step;
+    }
+
+    for ( int i = 18; i < 24; i++ ) {
+        static vec2 step = vec2(-horStep,0.0);
+        points3[i] = points3[i-6] + step;
+    }
+/*//////////////////////////////////////////
+	BLOCK TYPE I
+*////////////////////////////////////////////
+	points4[0] = vec2(-EDGE,-EDGE);
+    points4[1] = vec2(-EDGE,-EDGE + 2*EDGE/21);
+    points4[2] = vec2(-EDGE + 2*EDGE/10,-EDGE);
+
+    points4[3] = vec2(-EDGE + 2*EDGE/10,-EDGE);
+    points4[4] = vec2(-EDGE + 2*EDGE/10,-EDGE + 2*EDGE/21);
+    points4[5] = vec2(-EDGE,-EDGE + 2*EDGE/21);
+    
+    for ( int i = 6; i < 24; i++ ) {
+        static vec2 step = vec2(horStep,0.0);
+        points4[i] = points4[i-6] + step;
+    }
+
+/*//////////////////////////////////////////
+	BLOCK TYPE S
+*////////////////////////////////////////////
+	points5[0] = vec2(-EDGE,-EDGE);
+    points5[1] = vec2(-EDGE,-EDGE + 2*EDGE/21);
+    points5[2] = vec2(-EDGE + 2*EDGE/10,-EDGE);
+
+    points5[3] = vec2(-EDGE + 2*EDGE/10,-EDGE);
+    points5[4] = vec2(-EDGE + 2*EDGE/10,-EDGE + 2*EDGE/21);
+    points5[5] = vec2(-EDGE,-EDGE + 2*EDGE/21);
+    
+    for ( int i = 6; i < 12; i++ ) {
+        static vec2 step = vec2(horStep,0.0);
+        points5[i] = points5[i-6] + step;
+    }
+
+    for ( int i = 12; i < 18; i++ ) {
+        static vec2 step = vec2(0.0,vertStep);
+        points5[i] = points5[i-6] + step;
+    }
+
+    for ( int i = 18; i < 24; i++ ) {
+        static vec2 step = vec2(horStep,0.0);
+       	points5[i] = points5[i-6] + step;
+    }
+
+/*//////////////////////////////////////////
+	BLOCK TYPE T
+*////////////////////////////////////////////
+	points6[0] = vec2(-EDGE,-EDGE);
+    points6[1] = vec2(-EDGE,-EDGE + 2*EDGE/21);
+    points6[2] = vec2(-EDGE + 2*EDGE/10,-EDGE);
+
+    points6[3] = vec2(-EDGE + 2*EDGE/10,-EDGE);
+    points6[4] = vec2(-EDGE + 2*EDGE/10,-EDGE + 2*EDGE/21);
+    points6[5] = vec2(-EDGE,-EDGE + 2*EDGE/21);
+    
+    for ( int i = 6; i < 18; i++ ) {
+        static vec2 step = vec2(horStep,0.0);
+        points6[i] = points6[i-6] + step;
+    }
+
+    for ( int i = 18; i < 24; i++ ) {
+        static vec2 step = vec2(0.0,vertStep);
+        points6[i] = points6[i-12] + step;
+    }
+/*//////////////////////////////////////////
+	BLOCK TYPE L
+*////////////////////////////////////////////
+    points7[0] = vec2(-EDGE,-EDGE);
+    points7[1] = vec2(-EDGE,-EDGE + 2*EDGE/21);
+    points7[2] = vec2(-EDGE + 2*EDGE/10,-EDGE);
+
+    points7[3] = vec2(-EDGE + 2*EDGE/10,-EDGE);
+    points7[4] = vec2(-EDGE + 2*EDGE/10,-EDGE + 2*EDGE/21);
+    points7[5] = vec2(-EDGE,-EDGE + 2*EDGE/21);
+    
+    for ( int i = 6; i < 18; i++ ) {
+        static vec2 step = vec2(horStep,0.0);
+        points7[i] = points7[i-6] + step;
+    }
+
+    for ( int i = 18; i < 24; i++ ) {
+        static vec2 step = vec2(0.0,vertStep);
+        points7[i] = points7[i-6] + step;
+    }
