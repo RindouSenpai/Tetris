@@ -322,20 +322,28 @@ bool CollisionTest(int num){
 
 	switch(num){
 		case 1:{
-			for(int i=0;i<24;i++){
+            for(int i=0;i<squares.size()-24;i++){
 
-				if(points5[i].y >= EDGE+ 2*EDGE/21){
-					cout << points5[i].y << endl;
-					return true;
-				}
-			}
+                for(int j=0;j<24;j++){
+
+                    if(squares[squares.size()-24+j].y > squares[i].y && squares[squares.size()-24+j].x == squares[i].x){
+                         cout << squares[squares.size()-24+j].y << endl;
+                        return true;
+                    }
+                    if(squares[squares.size()-24+i].y > 0.95){
+                    cout << squares[squares.size()-24+i].y << endl;
+                    return true;
+                }
+                }
+            }
 			break;
 		}
 		case 2:{
 			for(int i=0;i<24;i++){
 
-				if(points5[i].y == -EDGE- 2*EDGE/21){
-					cout << points5[i].y << endl;
+				if(squares[squares.size()-24+i].y < -0.95){
+					cout << squares[squares.size()-24+i].y << endl;
+                    cout << i << endl;
 					return true;
 				}
 			}
@@ -344,8 +352,8 @@ bool CollisionTest(int num){
 		case 3:{
 			for(int i=0;i<24;i++){
 
-				if(points5[i].x > EDGE){
-					cout << points5[i].x << endl;
+				if(squares[squares.size()-24+i].x > 0.95){
+					cout << squares[squares.size()-24+i].x << endl;
 					return true;
 				}
 			}
@@ -354,8 +362,8 @@ bool CollisionTest(int num){
 		case 4:{
 			for(int i=0;i<24;i++){
 
-				if(points5[i].x <= -EDGE- 2*EDGE/10){
-					cout << points5[i].x << endl;
+				if(squares[squares.size()-24+i].x < -0.95){
+					cout << squares[squares.size()-24+i].x << endl;
 					return true;
 				}
 			}
@@ -377,15 +385,15 @@ void keyboardSpecial( int key, int x, int y )
          printf("up arrow pressed!\n");
          static vec2 upstep = vec2( 0.0, vertStep );
 
-         for ( int i = 0; i < 24; ++i ) {
+         for ( int i = 0; i < 24; i++ ) {
         //points5[i] = points5[i] + upstep;
          	squares[squares.size()-24+i] = squares[squares.size()-24+i] +upstep;
      	}	
-	     //if(CollisionTest(1)){
-	     //	for ( int i = 0; i < 24; ++i ) {
-	     //   points5[i] = points5[i] - upstep;
-	     //	}
-     	//}
+	     if(CollisionTest(1)){
+	     	for ( int i = 0; i < 24; i++ ) {
+	        squares[squares.size()-24+i] = squares[squares.size()-24+i] - upstep;
+	     	}
+     	}
       	glutPostRedisplay();
          break;
      }
@@ -393,14 +401,14 @@ void keyboardSpecial( int key, int x, int y )
          printf("down arrow pressed!\n");
          static vec2 downstep = vec2( 0.0, -vertStep );
 
-         for ( int i = 0; i < 24; ++i ) {
+         for ( int i = 0; i < 24; i++ ) {
         squares[squares.size()-24+i] = squares[squares.size()-24+i] + downstep;
      	}
-     	 //if(CollisionTest(2)){
-	     //	for ( int i = 0; i < 24; ++i ) {
-	     //   points5[i] = points5[i] - downstep;
-	     //	}
-     	//}
+     	 if(CollisionTest(2)){
+	     	for ( int i = 0; i < 24; i++ ) {
+	        squares[squares.size()-24+i] = squares[squares.size()-24+i] - downstep;
+	     	}
+     	}
          glutPostRedisplay();
          break;
      }
@@ -411,11 +419,11 @@ void keyboardSpecial( int key, int x, int y )
          for ( int i = 0; i < 24; ++i ) {
         squares[squares.size()-24+i] = squares[squares.size()-24+i] + rightstep;
      }
-     	 //if(CollisionTest(3)){
-	     //	for ( int i = 0; i < 24; ++i ) {
-	     //   points5[i] = points5[i] - rightstep;
-	     //	}
-     	//}
+     	 if(CollisionTest(3)){
+	     	for ( int i = 0; i < 24; ++i ) {
+	        squares[squares.size()-24+i] = squares[squares.size()-24+i] - rightstep;
+	     	}
+     	}
          glutPostRedisplay();
          break;
     case  GLUT_KEY_LEFT:
@@ -425,11 +433,11 @@ void keyboardSpecial( int key, int x, int y )
          for ( int i = 0; i < 24; ++i ) {
         squares[squares.size()-24+i] = squares[squares.size()-24+i] + leftstep;
      }
-     	 //if(CollisionTest(4)){
-	     //	for ( int i = 0; i < 24; ++i ) {
-	     //   points5[i] = points5[i] - leftstep;
-	     //	}
-     	//}
+     	 if(CollisionTest(4)){
+	     	for ( int i = 0; i < 24; ++i ) {
+	        squares[squares.size()-24+i] = squares[squares.size()-24+i] - leftstep;
+	     	}
+     	}
          glutPostRedisplay();
          break;
     case  GLUT_KEY_F1:{
