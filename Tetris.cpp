@@ -10,12 +10,14 @@ const float EDGE2 = EDGE-EDGE*0.1;
 const float EDGE3 = EDGE+EDGE*0.1;
 const float vertStep = 2*EDGE/21;
 const float horStep = 2*EDGE/10;
+
+vec2 center;
 //const float stepOffest = 
 vector<vec2> squares;
 vector<vec4> colorsVec;
 
 GLuint vao,vao2;
-
+int currentBlock=0;
 static vec3  base_colors[] = {
         vec3( 1.0, 0.0, 0.0 ),
         vec3( 0.0, 1.0, 0.0 ),
@@ -64,7 +66,8 @@ void NewShape(int num){
 		        static vec2 step = vec2(0.0,vertStep);
 		        squares.push_back(squares[squares.size()-18] + step);
 		    }
-		    break;	    
+            currentBlock=num;
+            break;	    
 		}
 		case 2:{ // BLOCK O
 		    for ( int i = 6; i < 12; i++ ) {
@@ -79,6 +82,7 @@ void NewShape(int num){
         		static vec2 step = vec2(-horStep,0.0);
         		squares.push_back(squares[squares.size()-6] + step);
     		}
+            currentBlock=num;
     		break;
 		}
 		case 3:{ // BLOCK I
@@ -86,6 +90,7 @@ void NewShape(int num){
         		static vec2 step = vec2(horStep,0.0);
         		squares.push_back(squares[squares.size()-6] + step);
     		}
+            currentBlock=num;
     		break;
 		}
 		case 4:{ // BLOCK S
@@ -101,6 +106,7 @@ void NewShape(int num){
 		        static vec2 step = vec2(horStep,0.0);
 		       	squares.push_back(squares[squares.size()-6] + step);
 		    }
+            currentBlock=num;
     		break;
 		}
 		case 5:{ // BLOCK T
@@ -113,6 +119,7 @@ void NewShape(int num){
 		        static vec2 step = vec2(0.0,vertStep);
 		        squares.push_back(squares[squares.size()-12] + step);
 		    }
+            currentBlock=num;
     		break;
 		}
 		case 6:{ // BLOCK L
@@ -124,6 +131,7 @@ void NewShape(int num){
 		        static vec2 step = vec2(0.0,vertStep);
 		        squares.push_back(squares[squares.size()-6] + step);
 		    }
+            currentBlock=num;
     		break;
 		}
 		case 7:{ // BLOCK Z
@@ -139,6 +147,7 @@ void NewShape(int num){
 		        static vec2 step = vec2(horStep,0.0);
 		       	squares.push_back(squares[squares.size()-6] + step);
 		    }
+            currentBlock=num;
     		break;
 		}
 	}
@@ -147,6 +156,32 @@ void NewShape(int num){
 		colorsVec.push_back(vec4(0.5,0,0,1));
 	}
 
+}
+
+void GetCenter(int num){
+    switch(num){
+        case 1:
+            center = vec2((squares[squares.size()-24+6].x+squares[squares.size()-24+11].x)/2.0,(squares[squares.size()-24+6].y+squares[squares.size()-24+11].y)/2.0);
+            break;
+        case 2:
+            center = vec2(squares[squares.size()-24+10].x,squares[squares.size()-24+10].y);
+            break;
+        case 3:
+            center = vec2((squares[squares.size()-24+6].x+squares[squares.size()-24+11].x)/2.0,(squares[squares.size()-24+6].y+squares[squares.size()-24+11].y)/2.0);
+            break;
+        case 4:
+            center = vec2((squares[squares.size()-24+6].x+squares[squares.size()-24+11].x)/2.0,(squares[squares.size()-24+6].y+squares[squares.size()-24+11].y)/2.0);
+            break;
+        case 5:
+            center = vec2((squares[squares.size()-24+6].x+squares[squares.size()-24+11].x)/2.0,(squares[squares.size()-24+6].y+squares[squares.size()-24+11].y)/2.0);
+            break;
+        case 6:
+            center = vec2((squares[squares.size()-24+6].x+squares[squares.size()-24+11].x)/2.0,(squares[squares.size()-24+6].y+squares[squares.size()-24+11].y)/2.0);
+            break;
+        case 7:
+            center = vec2((squares[squares.size()-24+11].x+squares[squares.size()-24+16].x)/2.0,(squares[squares.size()-24+11].y+squares[squares.size()-24+16].y)/2.0);
+            break;
+    }
 }
 
 void init(){
@@ -176,7 +211,7 @@ void init(){
         colors2[i] = vec4(0.5,0,0,1);
     }
 
-NewShape(1);
+NewShape(7);
 
 //glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
     glGenVertexArrays( 1, &vao );
@@ -359,7 +394,7 @@ void keyboardSpecial( int key, int x, int y )
          static vec2 downstep = vec2( 0.0, -vertStep );
 
          for ( int i = 0; i < 24; ++i ) {
-        points5[i] = points5[i] + downstep;
+        squares[squares.size()-24+i] = squares[squares.size()-24+i] + downstep;
      	}
      	 //if(CollisionTest(2)){
 	     //	for ( int i = 0; i < 24; ++i ) {
@@ -374,7 +409,7 @@ void keyboardSpecial( int key, int x, int y )
          static vec2 rightstep = vec2( horStep, 0.0 );
 
          for ( int i = 0; i < 24; ++i ) {
-        points5[i] = points5[i] + rightstep;
+        squares[squares.size()-24+i] = squares[squares.size()-24+i] + rightstep;
      }
      	 //if(CollisionTest(3)){
 	     //	for ( int i = 0; i < 24; ++i ) {
@@ -388,7 +423,7 @@ void keyboardSpecial( int key, int x, int y )
          static vec2 leftstep = vec2( -horStep, 0.0 );
 
          for ( int i = 0; i < 24; ++i ) {
-        points5[i] = points5[i] + leftstep;
+        squares[squares.size()-24+i] = squares[squares.size()-24+i] + leftstep;
      }
      	 //if(CollisionTest(4)){
 	     //	for ( int i = 0; i < 24; ++i ) {
@@ -404,17 +439,21 @@ void keyboardSpecial( int key, int x, int y )
         //This is the 2x2 rotation matrix for 2D points.
         static mat2 rotate10degccw = mat2 ( cos(angle), -sin(angle), sin(angle), cos(angle));
 
-        vec2 center = points5[13];
-        vec2 center2 = vec2((points5[12].x+points5[16].x)/2.0,(points5[12].y+points5[16].y)/2.0);
+       // vec2 center = points5[13];
+        //vec2 center2 = vec2((points5[12].x+points5[16].x)/2.0,(points5[12].y+points5[16].y)/2.0);
+        GetCenter(currentBlock);
 
         for ( int i = 0; i < 24; i++ ) {
-            points5[i] = points5[i]-center2;
+            //points5[i] = points5[i]-center2;
+            squares[squares.size()-24+i] = squares[squares.size()-24+i] -center;
+            cout << squares[squares.size()-24+i] << endl;
         }
   
 
         for ( int i = 0; i < 24; i++ ) {
         //finally, we apply the transformation. The idea here is just to translate the points to origin, rotate and then translate it back
-            points5[i] = mat2((float)2.1,0,0,(float)10/21)*(rotate10degccw *points5[i]) + center2;
+            //points5[i] = mat2((float)2.1,0,0,(float)10/21)*(rotate10degccw *points5[i]) + center;
+            squares[squares.size()-24+i] = mat2((float)2.1,0,0,(float)10/21)*(rotate10degccw*squares[squares.size()-24+i]) +center;
         }
             //Always remember to update your canvas
          glutPostRedisplay();
